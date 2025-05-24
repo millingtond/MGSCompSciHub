@@ -1,0 +1,31 @@
+# Firebase Admin SDK service account key - VERY IMPORTANT TO IGNORE
+firebase-service-account-key.json
+
+# Python virtual environment
+venv/
+.venv/
+
+# Python bytecode and cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# SQLite database file (for local development)
+*.db
+*.sqlite
+*.sqlite3
+mgscompsci.db 
+
+# Instance folder (can contain sensitive config)
+instance/
+
+# Environment variables file
+.env
+
+# OS-specific
+.DS_Store
+Thumbs.db
+
+# IDE-specific
+.vscode/
+.idea/
