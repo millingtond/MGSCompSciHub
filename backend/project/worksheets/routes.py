@@ -1,13 +1,14 @@
+# MGSCompSciHub/backend/project/worksheets/routes.py
 from flask import jsonify, request
 from ..models import Worksheet, db
-from ..teacher.routes import teacher_required # Assuming teacher_required is defined in teacher.routes
+from ..auth.utils import firebase_teacher_required # Corrected import
 from . import worksheets_bp
 import logging
 
 logger = logging.getLogger(__name__)
 
 @worksheets_bp.route('', methods=['GET'])
-@teacher_required
+@firebase_teacher_required # Corrected decorator
 def list_all_worksheets():
     worksheets = Worksheet.query.order_by(Worksheet.title).all()
     return jsonify(success=True, worksheets=[
@@ -17,7 +18,7 @@ def list_all_worksheets():
 
 # Optional: Endpoint to add new worksheet metadata
 @worksheets_bp.route('', methods=['POST'])
-@teacher_required # Or a more specific admin role if needed
+@firebase_teacher_required # Corrected decorator, or a more specific admin role if needed
 def create_worksheet_metadata():
     data = request.get_json()
     title = data.get('title')

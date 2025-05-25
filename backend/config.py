@@ -17,3 +17,4 @@ class Config:
     MS_SCOPE = ["User.Read"]
 
     APP_BASE_URL = os.environ.get('APP_BASE_URL') or 'http://localhost:5000'
+    FIREBASE_ADMIN_SDK_JSON_PATH = os.environ.get('FIREBASE_ADMIN_SDK_JSON_PATH')

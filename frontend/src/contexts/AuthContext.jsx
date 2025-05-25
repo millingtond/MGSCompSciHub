@@ -26,6 +26,18 @@ export const AuthProvider = ({ children }) => {
       if (firebaseUser) {
         try {
           const token = await firebaseUser.getIdToken(true); 
+          console.log("Firebase ID Token (Frontend):", token); // <<< ADD THIS LINE
+          if (token) {
+  try {
+    const payloadBase64 = token.split('.')[1];
+    const decodedPayload = JSON.parse(atob(payloadBase64));
+    console.log("Decoded Token Payload (Frontend):", decodedPayload);
+    console.log("Token Expiry (Frontend):", new Date(decodedPayload.exp * 1000));
+    console.log("Token Issued At (Frontend):", new Date(decodedPayload.iat * 1000));
+  } catch (e) {
+    console.error("Error decoding token payload:", e);
+  }
+}
           setFirebaseIdToken(token);
           apiClient.defaults.headers.common['Authorization'] = `Bearer ${token}`;
           
